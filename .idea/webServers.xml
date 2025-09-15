@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ffcb272b-bfa2-4067-8c9d-60e48f2d6be7" name="bitrix" url="/home/qualification-zapintix/qualification-zapintix_qualification-zapintix/www/">
+        <fileTransfer rootFolder="/home/qualification-zapintix/qualification-zapintix_qualification-zapintix/www/" accessType="SFTP" host="qualification-zapintix.trainee.dterra.ru" port="22" sshConfigId="a928c5e8-ece9-4e0f-9214-43f954dfcd48" sshConfig="qualification-zapintix@qualification-zapintix.trainee.dterra.ru:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
