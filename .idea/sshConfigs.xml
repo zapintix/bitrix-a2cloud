@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="qualification-zapintix.trainee.dterra.ru" id="a928c5e8-ece9-4e0f-9214-43f954dfcd48" keyPath="$USER_HOME$/Desktop/key" port="22" nameFormat="DESCRIPTIVE" username="qualification-zapintix" useOpenSSHConfig="true" />
+      <sshConfig host="qualification-zapintix.trainee.dterra.ru" id="a928c5e8-ece9-4e0f-9214-43f954dfcd48" keyPath="D:\key" port="22" nameFormat="DESCRIPTIVE" username="qualification-zapintix" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

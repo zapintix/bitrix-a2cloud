@@ -10,6 +10,8 @@
         "SET_TITLE" => "Y",
         "CACHE_TYPE" => $arParams["CACHE_TYPE"],
         "CACHE_TIME" => $arParams["CACHE_TIME"],
+        "ADD_ELEMENT_CHAIN" => "Y",
+
     ),
     $component
 );?>

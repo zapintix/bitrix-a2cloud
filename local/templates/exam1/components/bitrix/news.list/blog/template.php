@@ -16,23 +16,16 @@
 
         <div class="scroll-layout__wrapper" data-astro-cid-k3uedcv5>
             <div class="scroll-layout__container" data-astro-cid-k3uedcv5>
-                <nav class="breadcrumbs" data-astro-cid-k3uedcv5="true" data-astro-cid-slbptjtv>
-                    <ul class="breadcrumbs__list text-title-20 devices:text-title-16" data-astro-cid-slbptjtv>
-                        <li data-astro-cid-slbptjtv>
-                            <a class="breadcrumbs__item" href="/main" data-astro-cid-slbptjtv>Главная</a>
-                        </li>
-
-                        <li data-astro-cid-slbptjtv>
-                            <a class="breadcrumbs__item" href="#" data-astro-cid-slbptjtv>
-                                Компания
-                            </a>
-                        </li>
-
-                        <li class="breadcrumbs__item active" data-astro-cid-slbptjtv>
-                            <span data-astro-cid-slbptjtv>Блог</span>
-                        </li>
-                    </ul>
-                </nav>
+                <?php $APPLICATION->IncludeComponent(
+                    "bitrix:breadcrumb",
+                    "blog_detail",
+                    array(
+                        "PATH" => "",
+                        "SITE_ID" => "s1",
+                        "START_FROM" => "0",
+                    ),
+                    false
+                );?>
                 <h1 style="" data-astro-cid-k3uedcv5="true" data-astro-cid-5a7m7riw="true" class="title title_variant_120 title_color_white title_weight_400 scroll-layout__title">
                     Блог
                 </h1>
@@ -52,28 +45,11 @@
                                 <ul class="tabs__list" role="tablist" data-astro-cid-auahkboc>
                                     <li data-astro-cid-auahkboc>
                                         <a href="#" role="tab" aria-selected="true" data-astro-cid-auahkboc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_light button_variant_contained tab active"><span class="button__text" data-astro-cid-m3hx3gxg>
-
-                <span class="tab__label" data-astro-cid-auahkboc>Все</span>
-
-      </span></a>
-                                    </li><li data-astro-cid-auahkboc>
-                                        <a href="#" role="tab" aria-selected="false" data-astro-cid-auahkboc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_light button_variant_contained tab"><span class="button__text" data-astro-cid-m3hx3gxg>
-
-                <span class="tab__label" data-astro-cid-auahkboc>Новости</span>
-
-      </span></a>
-                                    </li><li data-astro-cid-auahkboc>
-                                        <a href="#" role="tab" aria-selected="false" data-astro-cid-auahkboc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_light button_variant_contained tab"><span class="button__text" data-astro-cid-m3hx3gxg>
-
-                <span class="tab__label" data-astro-cid-auahkboc>Публикации</span>
-
-      </span></a>
-                                    </li><li data-astro-cid-auahkboc>
-                                        <a href="#" role="tab" aria-selected="false" data-astro-cid-auahkboc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_light button_variant_contained tab"><span class="button__text" data-astro-cid-m3hx3gxg>
-
-                <span class="tab__label" data-astro-cid-auahkboc>Мероприятия</span>
-
-      </span></a>
+                                                <span class="tab__label" data-astro-cid-auahkboc>
+                                                    Все
+                                                </span>
+                                            </span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

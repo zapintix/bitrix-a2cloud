@@ -1,7 +1,6 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 ?>
 <main class="page-container" data-barba="container" data-barba-namespace="blog-news">
-
     <div class="scroll-layout scroll-layout_bg_gray scroll-layout_lh-120 scroll-layout_pb-120" data-astro-cid-k3uedcv5>
         <div class="scroll-layout__bg" data-astro-cid-k3uedcv5>
             <div data-astro-cid-k3uedcv5>
@@ -19,11 +18,12 @@
                 <?php $APPLICATION->IncludeComponent(
                     "bitrix:breadcrumb",
                     "blog_detail",
-                    Array(
+                    array(
                         "PATH" => "",
                         "SITE_ID" => "s1",
-                        "START_FROM" => "0"
-                    )
+                        "START_FROM" => "0",
+                    ),
+                    false
                 );?>
                 <h1 style="line-height:120%" data-astro-cid-k3uedcv5="true" data-astro-cid-5a7m7riw="true" class="title title_variant_48 title_color_white title_weight_400 scroll-layout__title">
                     <?=$arResult["NAME"]?>
@@ -466,6 +466,7 @@
                                     "DETAIL_URL" => "/blog/#ELEMENT_ID#/",
                                     "CACHE_TYPE" => "A",
                                     "CACHE_TIME" => "36000000",
+                                    "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
                                 ),
                                 false
                             );?>
