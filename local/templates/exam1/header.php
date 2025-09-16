@@ -791,47 +791,32 @@
 </div>
 
     <div class="menu menu_nested bg-white menu_variant_big desktop:block devices:hidden" data-menu-panel="services" data-variant="big" data-astro-cid-q4nsqqgu>
-  <div class="menu__inner animate" data-astro-cid-q4nsqqgu>
-    
-      <div class="header__row" data-astro-cid-hcwr7iq5>
-        <a class="header-card" data-astro-cid-hcwr7iq5="true" href="#" data-astro-cid-dktb7hwi>
-  <p data-astro-cid-dktb7hwi="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue header-card__title">
-  Размещение СКЗИ в ЦОДе
-</p>
-
-  <div class="header-card__img" data-astro-cid-dktb7hwi>
-    <picture class="picture" data-astro-cid-dktb7hwi="true" data-astro-cid-s5f3uvtz>
-  
-
-  
-  <source type="image/webp" srcset="/images/header-1_19LOTd.webp 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
-  
-  <source type="image/png" srcset="/images/header-1.png 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
-
-  
-  <img src="/images/header-1.png" srcset="/images/header-1.png 500w" alt width="500" height="340" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
-</picture>
-  </div>
-</a>
-        <a class="header-card" data-astro-cid-hcwr7iq5="true" href="#" data-astro-cid-dktb7hwi>
-  <p data-astro-cid-dktb7hwi="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue header-card__title">
-  Миграция инфраструктуры
-</p>
-
-  <div class="header-card__img" data-astro-cid-dktb7hwi>
-    <picture class="picture" data-astro-cid-dktb7hwi="true" data-astro-cid-s5f3uvtz>
-  
-
-  
-  <source type="image/webp" srcset="/images/header-2_1iJrWR.webp 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
-  
-  <source type="image/png" srcset="/images/header-2.png 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
-
-  
-  <img src="/images/header-2.png" srcset="/images/header-2.png 500w" alt width="500" height="340" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
-</picture>
-  </div>
-</a>
+        <div class="menu__inner animate" data-astro-cid-q4nsqqgu>
+            <div class="header__row" data-astro-cid-hcwr7iq5>
+                <a class="header-card" data-astro-cid-hcwr7iq5="true" href="#" data-astro-cid-dktb7hwi>
+                    <p data-astro-cid-dktb7hwi="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue header-card__title">
+                        Размещение СКЗИ в ЦОДе
+                    </p>
+                    <div class="header-card__img" data-astro-cid-dktb7hwi>
+                        <picture class="picture" data-astro-cid-dktb7hwi="true" data-astro-cid-s5f3uvtz>
+                            <source type="image/webp" srcset="/images/header-1_19LOTd.webp 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                            <source type="image/png" srcset="/images/header-1.png 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                            <img src="/images/header-1.png" srcset="/images/header-1.png 500w" alt width="500" height="340" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
+                        </picture>
+                    </div>
+                </a>
+                <a class="header-card" data-astro-cid-hcwr7iq5="true" href="#" data-astro-cid-dktb7hwi>
+                    <p data-astro-cid-dktb7hwi="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue header-card__title">
+                        Миграция инфраструктуры
+                    </p>
+                    <div class="header-card__img" data-astro-cid-dktb7hwi>
+                        <picture class="picture" data-astro-cid-dktb7hwi="true" data-astro-cid-s5f3uvtz>
+                            <source type="image/webp" srcset="/images/header-2_1iJrWR.webp 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                            <source type="image/png" srcset="/images/header-2.png 500w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                            <img src="/images/header-2.png" srcset="/images/header-2.png 500w" alt width="500" height="340" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
+                        </picture>
+                    </div>
+                </a>
         <a class="header-card" data-astro-cid-hcwr7iq5="true" href="#" data-astro-cid-dktb7hwi>
   <p data-astro-cid-dktb7hwi="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue header-card__title">
   Аренда облачных сервисов SaaS

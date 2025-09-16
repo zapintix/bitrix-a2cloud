@@ -5,14 +5,14 @@ $aMenuLinks = Array(
         "Услуги",
         "about/",
         Array(),
-        Array(),
+        Array("button" => "services"),
         ""
     ),
     Array(
         "Решения",
         "team/",
         Array(),
-        Array(),
+        Array("button" => "solutions"),
         ""
     ),
     Array(
@@ -26,7 +26,7 @@ $aMenuLinks = Array(
         "Поддержка",
         "support/",
         Array(),
-        Array(),
+        Array("button" => "support"),
         ""
     ),
     Array(
