@@ -141,7 +141,7 @@
                   <?php
                   $APPLICATION->IncludeComponent(
                       "bitrix:news.list",
-                      "template",
+                      "footer",
                       array(
                           "IBLOCK_TYPE" => "menu",
                           "IBLOCK_ID" => "5",
