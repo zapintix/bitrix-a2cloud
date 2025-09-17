@@ -1,5 +1,34 @@
-<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
+
+<?php
+// Определяем текущий фильтр
+$sort = $_GET['sort'] ?? 'new';
+
+// Функция сортировки
+usort($arResult["ITEMS"], function($a, $b) use ($sort) {
+    switch ($sort) {
+        case 'new':
+            return MakeTimeStamp($b["TIMESTAMP_X"]) <=> MakeTimeStamp($a["TIMESTAMP_X"]);
+        case 'old':
+            return MakeTimeStamp($a["TIMESTAMP_X"]) <=> MakeTimeStamp($b["TIMESTAMP_X"]);
+        case 'popular':
+            return intval($b["PROPERTIES"]["11"]["VALUE"]) <=> intval($a["PROPERTIES"]["11"]["VALUE"]);
+        case 'long':
+            return intval($b["PROPERTIES"]["12"]["VALUE"]) <=> intval($a["PROPERTIES"]["12"]["VALUE"]);
+        default:
+            return 0;
+    }
+});
+
+// Если AJAX-запрос, выводим только карточки
+if ($_GET['ajax'] === 'Y') {
+    foreach ($arResult["ITEMS"] as $arItem) {
+        include 'blog_card_template.php';
+    }
+    die();
+}
 ?>
+
 <main class="page-container" data-barba="container" data-barba-namespace="blog">
 
     <div class="scroll-layout scroll-layout_bg_gray" data-astro-cid-k3uedcv5>
@@ -54,16 +83,27 @@
                                 </ul>
                             </div>
                         </div>
+
                         <span class="ui-select desktop:mr-5" data-astro-cid-ir4hkoxs>
-  <select id="blog-select" class="js-select" data-astro-cid-ir4hkoxs>
+                            <select id="blog-select" class="js-select" data-astro-cid-ir4hkoxs>
+                                <option value="new" data-astro-cid-ir4hkoxs>
+                                    Сначала новые
+                                </option>
+                                <option value="old" data-astro-cid-ir4hkoxs>
+                                    Сначала новые
+                                </option>
+                                <option value="popular" data-astro-cid-ir4hkoxs>
+                                    Популярные
+                                </option>
+                                <option value="long" data-astro-cid-ir4hkoxs>
+                                    Длительные
+                                </option>
+                            </select>
+                        </span>
 
-    <option value="Сначала новые" data-astro-cid-ir4hkoxs>Сначала новые</option><option value="Популярные" data-astro-cid-ir4hkoxs>Популярные</option><option value="Длительные" data-astro-cid-ir4hkoxs>Длительные</option>
-  </select>
-
-</span>
                     </div>
 <!--   ------------------------------     ------------------------------ ------------------------------             -->
-<div class="blog-cards__list" data-astro-cid-spsfcsoc>
+<div id="blog-cards-container" class="blog-cards__list" data-astro-cid-spsfcsoc>
     <?php foreach ($arResult["ITEMS"] as $arItem): ?>
     <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="article-card article-card--has-image" data-astro-cid-spsfcsoc="true" data-astro-cid-hzklegbo>
         <div class="article-card__img" data-astro-cid-hzklegbo>
@@ -313,3 +353,27 @@
     </a>
 
 </main>
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const select = document.getElementById("blog-select");
+        if (select) {
+            select.addEventListener("change", function () {
+                const sort = this.value;
+                console.log(sort)
+
+                const container = document.getElementById('blog-cards-container');
+
+                fetch(window.location.pathname + '?ajax=Y&sort=' + sort)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                    })
+                    .catch(err => console.error('Ошибка загрузки карточек:', err));
+
+            });
+        } else {
+            console.log("❌ select не найден!");
+        }
+    });
+</script>
