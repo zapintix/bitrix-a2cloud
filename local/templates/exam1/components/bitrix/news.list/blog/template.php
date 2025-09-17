@@ -1,34 +1,5 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
-<?php
-// Определяем текущий фильтр
-$sort = $_GET['sort'] ?? 'new';
-
-// Функция сортировки
-usort($arResult["ITEMS"], function($a, $b) use ($sort) {
-    switch ($sort) {
-        case 'new':
-            return MakeTimeStamp($b["TIMESTAMP_X"]) <=> MakeTimeStamp($a["TIMESTAMP_X"]);
-        case 'old':
-            return MakeTimeStamp($a["TIMESTAMP_X"]) <=> MakeTimeStamp($b["TIMESTAMP_X"]);
-        case 'popular':
-            return intval($b["PROPERTIES"]["11"]["VALUE"]) <=> intval($a["PROPERTIES"]["11"]["VALUE"]);
-        case 'long':
-            return intval($b["PROPERTIES"]["12"]["VALUE"]) <=> intval($a["PROPERTIES"]["12"]["VALUE"]);
-        default:
-            return 0;
-    }
-});
-
-// Если AJAX-запрос, выводим только карточки
-if ($_GET['ajax'] === 'Y') {
-    foreach ($arResult["ITEMS"] as $arItem) {
-        include 'blog_card_template.php';
-    }
-    die();
-}
-?>
-
 <main class="page-container" data-barba="container" data-barba-namespace="blog">
 
     <div class="scroll-layout scroll-layout_bg_gray" data-astro-cid-k3uedcv5>
@@ -85,97 +56,86 @@ if ($_GET['ajax'] === 'Y') {
                         </div>
 
                         <span class="ui-select desktop:mr-5" data-astro-cid-ir4hkoxs>
-                            <select id="blog-select" class="js-select" data-astro-cid-ir4hkoxs>
-                                <option value="new" data-astro-cid-ir4hkoxs>
-                                    Сначала новые
-                                </option>
-                                <option value="old" data-astro-cid-ir4hkoxs>
-                                    Сначала новые
-                                </option>
-                                <option value="popular" data-astro-cid-ir4hkoxs>
-                                    Популярные
-                                </option>
-                                <option value="long" data-astro-cid-ir4hkoxs>
-                                    Длительные
-                                </option>
-                            </select>
+                           <select id="blog-select" class="js-select" onchange="location.href = '?sort=' + this.value">
+                               <option value="new" <?=($_GET['sort'] ?? 'new') === 'new' ? 'selected' : ''?>>Сначала новые</option>
+                               <option value="old" <?=($_GET['sort'] ?? 'new') === 'old' ? 'selected' : ''?>>Сначала старые</option>
+                           </select>
                         </span>
-
                     </div>
-<!--   ------------------------------     ------------------------------ ------------------------------             -->
-<div id="blog-cards-container" class="blog-cards__list" data-astro-cid-spsfcsoc>
-    <?php foreach ($arResult["ITEMS"] as $arItem): ?>
-    <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="article-card article-card--has-image" data-astro-cid-spsfcsoc="true" data-astro-cid-hzklegbo>
-        <div class="article-card__img" data-astro-cid-hzklegbo>
-            <picture class="picture" data-astro-cid-hzklegbo="true" data-astro-cid-s5f3uvtz>
-                <source type="image/webp" srcset="/images/plug_ZNNrmJ.webp 914w" sizes="100vw" data-astro-cid-s5f3uvtz>
-                <source type="image/png" srcset="/images/plug.png 914w" sizes="100vw" data-astro-cid-s5f3uvtz>
-                <img src="/images/plug.png" srcset="/images/plug.png 914w" alt="#" width="914" height="680" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
-            </picture>
-        </div>
-        <div class="article-card__head" data-astro-cid-hzklegbo>
-            <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
-                <?php
-                    echo FormatDate("d f Y", MakeTimeStamp($arItem["TIMESTAMP_X"]));
-                ?>
-            </p>
-            <div class="article-card__block" data-astro-cid-hzklegbo>
-                <div class="article-card__time" data-astro-cid-hzklegbo>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="article-card__svg" data-astro-cid-hzklegbo="true">
-                        <g>
-                            <g>
-                                <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M15.7099 15.1798L12.6099 13.3298C12.0699 13.0098 11.6299 12.2398 11.6299 11.6098V7.50977" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                        </g>
-                    </svg>
+                    <!--   ------------------------------     ------------------------------ ------------------------------             -->
+                    <div id="blog-cards-container" class="blog-cards__list" data-astro-cid-spsfcsoc>
+                        <?php foreach ($arResult["ITEMS"] as $arItem): ?>
+                            <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="article-card article-card--has-image" data-astro-cid-spsfcsoc="true" data-astro-cid-hzklegbo>
+                                <div class="article-card__img" data-astro-cid-hzklegbo>
+                                    <picture class="picture" data-astro-cid-hzklegbo="true" data-astro-cid-s5f3uvtz>
+                                        <source type="image/webp" srcset="/images/plug_ZNNrmJ.webp 914w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                                        <source type="image/png" srcset="/images/plug.png 914w" sizes="100vw" data-astro-cid-s5f3uvtz>
+                                        <img src="/images/plug.png" srcset="/images/plug.png 914w" alt="#" width="914" height="680" loading="lazy" decoding="async" class="picture__img" sizes="100vw" data-astro-cid-s5f3uvtz>
+                                    </picture>
+                                </div>
+                                <div class="article-card__head" data-astro-cid-hzklegbo>
+                                    <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
+                                        <?php
+                                        echo FormatDate("d f Y", MakeTimeStamp($arItem["TIMESTAMP_X"]));
+                                        ?>
+                                    </p>
+                                    <div class="article-card__block" data-astro-cid-hzklegbo>
+                                        <div class="article-card__time" data-astro-cid-hzklegbo>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="article-card__svg" data-astro-cid-hzklegbo="true">
+                                                <g>
+                                                    <g>
+                                                        <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M15.7099 15.1798L12.6099 13.3298C12.0699 13.0098 11.6299 12.2398 11.6299 11.6098V7.50977" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </g>
+                                                </g>
+                                            </svg>
 
-                    <!--время чтения-->
-                    <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
-                        <?= htmlspecialchars($arItem["PROPERTIES"]["11"]["VALUE"]) ?>
-                    </p>
-                </div>
-                <div class="article-card__time" data-astro-cid-hzklegbo>
+                                            <!--время чтения-->
+                                            <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
+                                                <?= htmlspecialchars($arItem["PROPERTIES"]["11"]["VALUE"]) ?>
+                                            </p>
+                                        </div>
+                                        <div class="article-card__time" data-astro-cid-hzklegbo>
 
-                    <!--картинка-->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="article-card__svg" data-astro-cid-hzklegbo="true">
-                        <g>
-                            <g>
-                                <path d="M15.5799 11.9999C15.5799 13.9799 13.9799 15.5799 11.9999 15.5799C10.0199 15.5799 8.41992 13.9799 8.41992 11.9999C8.41992 10.0199 10.0199 8.41992 11.9999 8.41992C13.9799 8.41992 15.5799 10.0199 15.5799 11.9999Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M11.9998 20.2702C15.5298 20.2702 18.8198 18.1902 21.1098 14.5902C22.0098 13.1802 22.0098 10.8102 21.1098 9.40021C18.8198 5.80021 15.5298 3.72021 11.9998 3.72021C8.46984 3.72021 5.17984 5.80021 2.88984 9.40021C1.98984 10.8102 1.98984 13.1802 2.88984 14.5902C5.17984 18.1902 8.46984 20.2702 11.9998 20.2702Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                        </g>
-                    </svg>
+                                            <!--картинка-->
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="article-card__svg" data-astro-cid-hzklegbo="true">
+                                                <g>
+                                                    <g>
+                                                        <path d="M15.5799 11.9999C15.5799 13.9799 13.9799 15.5799 11.9999 15.5799C10.0199 15.5799 8.41992 13.9799 8.41992 11.9999C8.41992 10.0199 10.0199 8.41992 11.9999 8.41992C13.9799 8.41992 15.5799 10.0199 15.5799 11.9999Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M11.9998 20.2702C15.5298 20.2702 18.8198 18.1902 21.1098 14.5902C22.0098 13.1802 22.0098 10.8102 21.1098 9.40021C18.8198 5.80021 15.5298 3.72021 11.9998 3.72021C8.46984 3.72021 5.17984 5.80021 2.88984 9.40021C1.98984 10.8102 1.98984 13.1802 2.88984 14.5902C5.17984 18.1902 8.46984 20.2702 11.9998 20.2702Z" stroke="#80828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </g>
+                                                </g>
+                                            </svg>
 
-                    <!--кол-во просмотров-->
-                    <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
-                        <?= htmlspecialchars($arItem["PROPERTIES"]["12"]["VALUE"]) ?>
-                    </p>
+                                            <!--кол-во просмотров-->
+                                            <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_gray">
+                                                <?= htmlspecialchars($arItem["PROPERTIES"]["12"]["VALUE"]) ?>
+                                            </p>
 
-                </div>
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <!--название-->
-        <div class="article-card__wrapper" data-astro-cid-hzklegbo>
-            <h4 data-astro-cid-hzklegbo="true" data-astro-cid-5a7m7riw="true" class="title title_variant_24 title_color_blue title_weight_300 article-card__text">
+                                <!--название-->
+                                <div class="article-card__wrapper" data-astro-cid-hzklegbo>
+                                    <h4 data-astro-cid-hzklegbo="true" data-astro-cid-5a7m7riw="true" class="title title_variant_24 title_color_blue title_weight_300 article-card__text">
 
-                <?=$arItem["NAME"]?>
+                                        <?=$arItem["NAME"]?>
 
-            </h4>
-        </div>
+                                    </h4>
+                                </div>
 
-        <!--теги-->
-        <div class="article-card__foot" data-astro-cid-hzklegbo>
-            <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue article-card__tag">
-                Мероприятия
-            </p>
-        </div>
-    </a>
-    <?php endforeach;?>
-</div>
+                                <!--теги-->
+                                <div class="article-card__foot" data-astro-cid-hzklegbo>
+                                    <p data-astro-cid-hzklegbo="true" data-astro-cid-py3iw5hh="true" class="text text_variant_17 text_color_blue article-card__tag">
+                                        Мероприятия
+                                    </p>
+                                </div>
+                            </a>
+                        <?php endforeach;?>
+                    </div>
 
-<button data-astro-cid-spsfcsoc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_primary button_variant_contained blog-cards__button"><span class="button__text" data-astro-cid-m3hx3gxg>
+                    <button data-astro-cid-spsfcsoc="true" data-astro-cid-m3hx3gxg="true" class="button button_color_primary button_variant_contained blog-cards__button"><span class="button__text" data-astro-cid-m3hx3gxg>
 
     Показать еще
 
@@ -353,27 +313,3 @@ if ($_GET['ajax'] === 'Y') {
     </a>
 
 </main>
-<script>
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const select = document.getElementById("blog-select");
-        if (select) {
-            select.addEventListener("change", function () {
-                const sort = this.value;
-                console.log(sort)
-
-                const container = document.getElementById('blog-cards-container');
-
-                fetch(window.location.pathname + '?ajax=Y&sort=' + sort)
-                    .then(response => response.text())
-                    .then(html => {
-                        container.innerHTML = html;
-                    })
-                    .catch(err => console.error('Ошибка загрузки карточек:', err));
-
-            });
-        } else {
-            console.log("❌ select не найден!");
-        }
-    });
-</script>
